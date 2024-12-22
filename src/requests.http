@@ -3,3 +3,13 @@ GET http://localhost:3000/products
 ###
 
 GET http://localhost:3000/products?sort=asc&count=3
+
+
+###
+POST http://localhost:3000/login
+Content-Type: application/json
+
+{
+  "email": "barose_yongin@naver.com",
+  "password": "whdkdyddlwhdkdyd@031"
+}
