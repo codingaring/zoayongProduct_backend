@@ -1,9 +1,10 @@
-import mongoose from 'mongoose';
+import mongoose, { Document, Schema, model } from 'mongoose';
+import { type Product as ProductType } from '../types/product';
 
-const { Schema, model } = mongoose;
+type Product = ProductType & Document;
 
 // 상품 스키마
-const ProductSchema = new Schema(
+const ProductSchema: Schema = new Schema<Product>(
   {
     id: {
       type: String,
@@ -73,6 +74,6 @@ const ProductSchema = new Schema(
   }
 );
 
-const Product = model('Product', ProductSchema);
+const Product = model<Product>('Product', ProductSchema);
 
 export default Product;

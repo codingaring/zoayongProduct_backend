@@ -1,3 +1,4 @@
+// Product type
 export type Product = {
   category: Category;
   name: string;

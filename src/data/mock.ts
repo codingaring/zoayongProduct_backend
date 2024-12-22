@@ -1,4 +1,4 @@
-import { type Product } from './types.js';
+import { type Product } from '../types/product.js';
 
 const data: Product[] = [
   /** 토이 */
