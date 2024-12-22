@@ -34,3 +34,6 @@ Thumbs.db
 # 빌드 파일
 dist/
 build/
+
+# 유저 mock 데이
+/src/data/mockUser.ts

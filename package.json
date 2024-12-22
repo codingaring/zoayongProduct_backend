@@ -6,7 +6,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon dist/app.js",
     "start": "node dist/app.js",
-    "seed": "node dist/data/seed.js",
+    "seed": "node dist/data/seeding/index.js",
     "build": "tsc",
     "lint": "eslint 'src/**/*.{js,ts}'",
     "lint:fix": "eslint 'src/**/*.{js,ts}' --fix",
