@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
-import data from './mock';
-import Product from '../models/Product';
+import data from './mock.js';
+import Product from '../models/Product.js';
 import dotenv from 'dotenv';
 import path from 'path';
 import { fileURLToPath } from 'url';

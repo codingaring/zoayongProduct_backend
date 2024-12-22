@@ -1,7 +1,7 @@
 import express, { type Request, type Response } from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-import Product from './models/Product';
+import Product from './models/Product.js';
 import { fileURLToPath } from 'url';
 import path from 'path';
 import cors from 'cors';
