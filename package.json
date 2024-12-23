@@ -10,7 +10,14 @@
     "build": "tsc",
     "lint": "eslint 'src/**/*.{js,ts}'",
     "lint:fix": "eslint 'src/**/*.{js,ts}' --fix",
-    "format": "prettier --write 'src/**/*.{js,ts,json,md}'"
+    "format": "prettier --write 'src/**/*.{js,ts,json,md}'",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.ts": [
+      "npm run build",
+      "npm run start"
+    ]
   },
   "keywords": [],
   "author": "",
@@ -44,6 +51,8 @@
     "eslint": "^9.17.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.2.11",
     "prettier": "^3.4.2",
     "typescript": "^5.7.2"
   }
