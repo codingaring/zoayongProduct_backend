@@ -1,5 +1,5 @@
 import admin from 'firebase-admin';
-import { loadEnv } from './loadEnv';
+import { loadEnv } from './loadEnv.js';
 
 loadEnv();
 
