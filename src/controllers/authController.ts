@@ -4,11 +4,36 @@ import jwt from 'jsonwebtoken';
 import { loadEnv } from '../utils/loadEnv.js';
 import asyncHandler from '../utils/asyncHandler.js';
 import User from '../models/User.js';
+import admin from '../utils/initFirebase.js';
 
 loadEnv();
 
 export const login: RequestHandler = asyncHandler(
   async (req: Request, res: Response) => {
+    const { type } = req.query;
+
+    // google, kakao
+    if (type === 'google' || type === 'kakao') {
+      const { token } = req.body;
+
+      if (!token) {
+        return res.status(400).json({ message: '구글 로그인을 확인해주세요.' });
+      }
+
+      const decodedToken = await admin.auth().verifyIdToken(token);
+      const { uid, email: googleEmail } = decodedToken;
+
+      let user = await User.findOne({ uid });
+      if (!user) {
+        user = new User({ uid, email: googleEmail });
+        await user.save();
+      }
+
+      return res
+        .status(200)
+        .json({ message: '구글 로그인 성공', uid, email: googleEmail });
+    }
+
     const { email, password } = req.body;
 
     const user = await User.findOne({ email: email }).select('+password');

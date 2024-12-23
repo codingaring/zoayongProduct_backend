@@ -3,7 +3,7 @@ import { type User as UserType } from '../types/user';
 
 type User = UserType & Document;
 
-// 상품 스키마
+// 유저 정보 스키마
 const UserSchema: Schema = new Schema<User>({
   email: {
     type: String,
@@ -24,6 +24,12 @@ const UserSchema: Schema = new Schema<User>({
   },
   oauthId: {
     type: String,
+  },
+  uid: {
+    type: String,
+    required: function (this: any) {
+      return !!this.oauthProvider;
+    },
   },
   createdAt: {
     type: Date,

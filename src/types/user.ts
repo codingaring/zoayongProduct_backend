@@ -6,6 +6,7 @@ export type User = {
   oauthProvider?: OauthProvider;
   oauthId?: string;
   createdAt: Date;
+  uid?: string;
 };
 
 // Part of a User Type
