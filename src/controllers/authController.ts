@@ -5,6 +5,7 @@ import { loadEnv } from '../utils/loadEnv.js';
 import asyncHandler from '../utils/asyncHandler.js';
 import User from '../models/User.js';
 import admin from '../utils/initFirebase.js';
+import generateJwtToken from '../utils/jenerateJwtToken.js';
 
 loadEnv();
 
@@ -15,6 +16,7 @@ export const login: RequestHandler = asyncHandler(
     // google, kakao
     if (type === 'google' || type === 'kakao') {
       const { token } = req.body;
+      console.log(token);
 
       if (!token) {
         return res.status(400).json({ message: '구글 로그인을 확인해주세요.' });
@@ -29,9 +31,14 @@ export const login: RequestHandler = asyncHandler(
         await user.save();
       }
 
-      return res
-        .status(200)
-        .json({ message: '구글 로그인 성공', uid, email: googleEmail });
+      const accessToken = generateJwtToken({ id: user._id, uid, role: 'user' });
+
+      return res.status(200).json({
+        message: '구글 로그인 성공',
+        uid,
+        email: googleEmail,
+        accessToken,
+      });
     }
 
     const { email, password } = req.body;
@@ -51,13 +58,8 @@ export const login: RequestHandler = asyncHandler(
       }
     }
 
-    const accessToken = jwt.sign(
-      { id: user._id, role: user.role },
-      process.env.JWT_SECRET!,
-      {
-        expiresIn: '1h',
-      }
-    );
+    const accessToken = generateJwtToken({ id: user._id, role: user.role });
+
     return res.status(200).json({ accessToken });
   }
 );
