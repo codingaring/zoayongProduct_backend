@@ -18,7 +18,6 @@ mongoose
   .catch((error: any) => console.error('Connection error', error));
 
 const app = express();
-const port = process.env.PORT || 3000;
 
 // const corsOptions = {
 //   origin: ['http://localhost:3000'],
@@ -31,4 +30,4 @@ app.use(express.json());
 app.use('/products', productRoutes);
 app.use('/login', authRoutes);
 
-app.listen(port, () => console.log('Server Started'));
+app.listen(3000, () => console.log('Server Started'));

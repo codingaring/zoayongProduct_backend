@@ -6,7 +6,7 @@ GET http://localhost:3000/products?sort=asc&count=3
 
 
 ###
-POST http://localhost:3000/login
+POST http://localhost:3000/login?type=admin
 Content-Type: application/json
 
 {
