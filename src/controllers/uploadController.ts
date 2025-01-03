@@ -1,11 +1,8 @@
-import express, { NextFunction, Request, Response } from 'express';
-import multer from 'multer';
-import { getStorage } from 'firebase-admin/storage';
-import asyncHandler from '../utils/asyncHandler';
+import { NextFunction, Request, Response } from 'express';
 import { v4 as uuidv4 } from 'uuid';
-import upload from '../middleware/multer';
-
-const bucket = getStorage().bucket();
+import asyncHandler from '../utils/asyncHandler.js';
+import upload from '../middleware/multer.js';
+import { bucket } from '../utils/initFirebase.js';
 
 // 이미지 업로드 API
 export const uploadImage = asyncHandler(
