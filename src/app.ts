@@ -6,6 +6,7 @@ import path from 'path';
 import cors from 'cors';
 import productRoutes from './routes/productRoutes.js';
 import authRoutes from './routes/authRoutes.js';
+import uploadRoutes from './routes/uploadRoutes.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -29,5 +30,6 @@ app.use(express.json());
 
 app.use('/products', productRoutes);
 app.use('/login', authRoutes);
+app.use('/upload', uploadRoutes);
 
 app.listen(3000, () => console.log('Server Started'));

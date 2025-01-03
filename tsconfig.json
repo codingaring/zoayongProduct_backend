@@ -11,6 +11,6 @@
     "moduleResolution": "node",
     "resolveJsonModule": true
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "src/utils/initFirebase.ts"],
   "exclude": ["node_modules"]
 }
