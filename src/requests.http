@@ -2,7 +2,7 @@ GET http://localhost:3000/products
 
 ###
 
-GET http://localhost:3000/products?sort=asc&count=3
+GET http://localhost:3000/products?page=2&limit=5&sort=asc
 
 
 ###
