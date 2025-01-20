@@ -1,5 +1,6 @@
 import Product from '../models/Product.js';
 import asyncHandler from '../utils/asyncHandler.js';
+import mongoose from 'mongoose';
 
 // 전체 상품 조회 및 페이지네이션
 export const getProducts = asyncHandler(async (req, res) => {
@@ -30,13 +31,18 @@ export const getProducts = asyncHandler(async (req, res) => {
 
 // 특정 상품 상세 정보 조회
 export const getProduct = asyncHandler(async (req, res) => {
-  const id = req.params.id;
-  const product = await Product.findById(id);
-  if (product) {
-    res.send(product);
-  } else {
-    res.status(404).send({ message: 'Cannot find given id' });
+  const { id } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({ message: 'id의 형식이 유효하지 않습니다.' });
   }
+
+  const product = await Product.findById(id);
+  if (!product) {
+    res.status(404).send({ message: '해당하는 id의 상품을 찾을 수 없습니다.' });
+  }
+
+  res.status(200).json(product);
 });
 
 // 관리자 상품 추가 및 수정

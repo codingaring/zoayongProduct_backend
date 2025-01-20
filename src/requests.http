@@ -13,3 +13,7 @@ Content-Type: application/json
   "email": "barose_yongin@naver.com",
   "password": "whdkdyddlwhdkdyd@031"
 }
+
+###
+GET http://localhost:3000/products/678dc0db32cd3ec3ff32c259
+

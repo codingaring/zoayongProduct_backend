@@ -6,11 +6,6 @@ type Product = ProductType & Document;
 // 상품 스키마
 const ProductSchema: Schema = new Schema<Product>(
   {
-    id: {
-      type: String,
-      required: true,
-      default: () => new mongoose.Types.ObjectId().toString(),
-    }, // 자동 생성 ID
     category: {
       type: String,
       required: true,
